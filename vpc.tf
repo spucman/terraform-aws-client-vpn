@@ -52,7 +52,7 @@ resource "aws_route_table" "rt" {
 }
 
 resource "aws_route_table_association" "rt_assoc" {
-  count = length(local.availability_zones)
+  count = length(aws_subnet.sn_az)
 
   route_table_id = aws_route_table.rt.id
   subnet_id = aws_subnet.sn_az[count.index].id

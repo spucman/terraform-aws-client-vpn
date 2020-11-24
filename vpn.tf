@@ -68,10 +68,10 @@ resource "aws_ec2_client_vpn_endpoint" "vpn" {
 }
 
 resource "aws_ec2_client_vpn_network_association" "vpn_subnets" {
-  for_each = aws_subnet.sn_az.*.id
+  count = length(aws_subnet.sn_az)
 
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.vpn.id
-  subnet_id = each.value
+  subnet_id = aws_subnet.sn_az[count.index].id
   security_groups = [aws_security_group.vpn_access.id]
 
   lifecycle {
