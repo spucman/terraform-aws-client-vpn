@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "vpn_server" {
-  domain_name = "example-vpn.example.com"
+  domain_name = "testing-terraform-for-fun.com"
   validation_method = "DNS"
 
   tags = local.global_tags
